@@ -43,6 +43,7 @@ import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.omnirom.omnijaws.CustomEditTextPreference;
 import org.omnirom.omnijaws.client.OmniJawsClient;
 
 import java.util.ArrayList;
@@ -62,12 +63,14 @@ public class SettingsActivityService extends PreferenceActivity implements OnPre
     private boolean mTriggerPermissionCheck;
     private ListPreference mUpdateInterval;
     private CustomLocationPreference mLocation;
+    private CustomEditTextPreference mAPIKey;
     private ListPreference mWeatherIconPack;
     private Preference mUpdateStatus;
     private Handler mHandler = new Handler();
     protected boolean mShowIconPack;
 
     private static final String PREF_KEY_CUSTOM_LOCATION_CITY = "weather_custom_location_city";
+    private static final String PREF_KEY_OWAPI = "owapi_key";
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
     private static final String WEATHER_ICON_PACK = "weather_icon_pack";
     private static final String PREF_KEY_UPDATE_STATUS = "update_status";
@@ -95,6 +98,13 @@ public class SettingsActivityService extends PreferenceActivity implements OnPre
                 mProvider.getEntryValues()[0].toString()));
         mProvider.setValueIndex(idx);
         mProvider.setSummary(mProvider.getEntries()[idx]);
+
+        mAPIKey = (CustomEditTextPreference) findPreference(PREF_KEY_OWAPI);
+        if (idx == 1) {
+            mAPIKey.setEnabled(false);
+        } else {
+            mAPIKey.setEnabled(true);
+        }
 
         mUnits = (ListPreference) findPreference(Config.PREF_KEY_UNITS);
         mUnits.setOnPreferenceChangeListener(this);
@@ -200,6 +210,11 @@ public class SettingsActivityService extends PreferenceActivity implements OnPre
             int idx = mProvider.findIndexOfValue(value);
             mProvider.setSummary(mProvider.getEntries()[idx]);
             mProvider.setValueIndex(idx);
+            if (idx == 1) {
+                mAPIKey.setEnabled(false);
+            } else {
+                mAPIKey.setEnabled(true);
+            }
             if (mCustomLocation.isChecked() && Config.getLocationName(this) != null) {
                 // city ids are provider specific - so we need to recheck
                 new WeatherLocationTask(this, Config.getLocationName(this), this).execute();
@@ -271,6 +286,9 @@ public class SettingsActivityService extends PreferenceActivity implements OnPre
             case R.id.playstore:
                 launchPlaystore();
                 return true;
+            case R.id.openweathermap:
+                launchBrowser();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -279,6 +297,12 @@ public class SettingsActivityService extends PreferenceActivity implements OnPre
     private void launchPlaystore() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("market://search?q=Chronus+icons&c=apps"));
+        startActivity(intent);
+    }
+
+    private void launchBrowser() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("https://home.openweathermap.org/api_keys"));
         startActivity(intent);
     }
 

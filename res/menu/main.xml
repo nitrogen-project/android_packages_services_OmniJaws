@@ -6,4 +6,8 @@
         android:id="@+id/playstore"
         android:title="@string/weather_icon_pack_playstore"
         android:showAsAction="never" />
+    <item
+        android:id="@+id/openweathermap"
+        android:title="@string/openweathermap_title"
+        android:showAsAction="never" />
 </menu>

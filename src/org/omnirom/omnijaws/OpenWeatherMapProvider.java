@@ -38,7 +38,7 @@ public class OpenWeatherMapProvider extends AbstractWeatherProvider {
     private static final int FORECAST_DAYS = 5;
     private static final String SELECTION_LOCATION = "lat=%f&lon=%f";
     private static final String SELECTION_ID = "id=%s";
-    private static final String API_KEY = "9f65b19b7a6648346dda93c6973a682c";
+    private Context mContext;
 
     private static final String URL_LOCATION =
             "http://api.openweathermap.org/data/2.5/find?q=%s&mode=json&lang=%s&appid=%s";
@@ -50,6 +50,7 @@ public class OpenWeatherMapProvider extends AbstractWeatherProvider {
 
     public OpenWeatherMapProvider(Context context) {
         super(context);
+        mContext = context;
     }
 
     public List<WeatherInfo.WeatherLocation> getLocations(String input) {
@@ -328,7 +329,7 @@ public class OpenWeatherMapProvider extends AbstractWeatherProvider {
     }
 
     private String getAPIKey() {
-        return mContext.getResources().getString(R.string.owm_api_key, API_KEY);
+        return Config.getAPIKey(mContext);
     }
 
     public boolean shouldRetry() {

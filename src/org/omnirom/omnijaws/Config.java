@@ -34,6 +34,7 @@ public class Config {
     public static final String PREF_KEY_ICON_PACK = "icon_pack";
     public static final String PREF_KEY_LAST_ALARM = "last_alarm";
     public static final String PREF_KEY_UPDATE_ERROR = "update_error";
+    public static final String PREF_KEY_API = "api_key";
 
     public static AbstractWeatherProvider getProvider(Context context) {
         SharedPreferences prefs = PreferenceManager
@@ -65,6 +66,20 @@ public class Config {
                 .getDefaultSharedPreferences(context);
 
         return prefs.getBoolean(PREF_KEY_CUSTOM_LOCATION, false);
+    }
+
+    public static String getAPIKey(Context context) {
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(context);
+
+        return prefs.getString(PREF_KEY_API, null);
+    }
+
+    public static void setAPIKey(Context context, String key) {
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(context);
+
+        prefs.edit().putString(PREF_KEY_API, key).commit();
     }
 
     public static String getLocationId(Context context) {

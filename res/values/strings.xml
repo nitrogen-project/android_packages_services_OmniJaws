@@ -60,6 +60,9 @@
     <string name="weather_config_title">Service settings</string>
     <string name="weather_config_summary"></string>
     <string name="omnijaws_service_error_marker" translatable="false">*</string>
+    <string name="owapi_key_title">OpenWeatherMap API Key</string>
+    <string name="no_owapi_key_title">Enter API Key</string>
+    <string name="openweathermap_title">Get API Key</string>
     <!-- Weather - Speed units -->
     <string name="weather_kph">kph</string>
     <string name="weather_mph">mph</string>

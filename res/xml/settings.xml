@@ -39,6 +39,11 @@
         android:key="provider"
         android:title="@string/provider_title" />
 
+    <org.omnirom.omnijaws.CustomEditTextPreference
+        android:dialogTitle="@string/no_owapi_key_title"
+        android:key="owapi_key"
+        android:title="@string/owapi_key_title" />
+
     <ListPreference
         android:entries="@array/units_entries"
         android:entryValues="@array/units_values"

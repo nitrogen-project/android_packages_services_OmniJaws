@@ -55,6 +55,9 @@
     <string name="omnijaws_current_text">Сейчас</string>
     <string name="show_background_title">Тень на заднем плане</string>
     <string name="weather_config_title">Настройки сервиса</string>
+    <string name="owapi_key_title">Ключ API для OpenWeatherMap</string>
+    <string name="no_owapi_key_title">Введите ключ API</string>
+    <string name="openweathermap_title">Получить ключ API</string>
     <string name="weather_0">Торнадо</string>
     <string name="weather_1">Шторм</string>
     <string name="weather_2">Ураган</string>
