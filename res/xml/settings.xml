@@ -40,6 +40,7 @@
         android:title="@string/provider_title" />
 
     <org.omnirom.omnijaws.CustomEditTextPreference
+        android:iconSpaceReserved="true"
         android:dialogTitle="@string/no_owapi_key_title"
         android:key="owapi_key"
         android:title="@string/owapi_key_title" />
@@ -56,6 +57,7 @@
         android:title="@string/custom_location_title" />
 
     <org.omnirom.omnijaws.CustomLocationPreference
+        android:iconSpaceReserved="true"
         android:dependency="custom_location"
         android:dialogTitle="@string/weather_custom_location_dialog_title"
         android:key="weather_custom_location_city"
